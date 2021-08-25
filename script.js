@@ -104,7 +104,7 @@ const formatCur = function (value, locale, currency) {
     currency: currency,
   }).format(value);
 };
-const displayMovements = function (acc, sort = true) {
+const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
   const movs = sort
@@ -183,9 +183,7 @@ const updateUI = function (acc) {
 };
 
 const startLogOutTimer = function () {
-  let time = 10;
-
-  const timer = setInterval(() => {
+  const tick = function () {
     const min = String(Math.trunc(time / 60)).padStart(2, '0');
     const sec = String(Math.trunc(time % 60)).padStart(0, 0);
     labelTimer.textContent = `${min}:${sec}`;
@@ -196,7 +194,10 @@ const startLogOutTimer = function () {
       labelWelcome.textContent = 'Log in to get started';
       containerApp.style.opacity = 0;
     }
-  }, 1000);
+  };
+  let time = 10;
+  tick();
+  const timer = setInterval(tick, 1000);
 };
 
 ///////////////////////////////////////
