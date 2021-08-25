@@ -286,6 +286,8 @@ btnTransfer.addEventListener('click', function (e) {
     // Update UI
     updateUI(currentAccount);
   }
+  clearInterval(timer);
+  timer = startLogOutTimer();
 });
 
 btnLoan.addEventListener('click', function (e) {
@@ -304,6 +306,10 @@ btnLoan.addEventListener('click', function (e) {
       // Update UI
       updateUI(currentAccount);
     }, 3000);
+
+    //reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
   inputLoanAmount.value = '';
 });
